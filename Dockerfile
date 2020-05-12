@@ -4,6 +4,9 @@ FROM python:3.5
 # PostgreSQL dev headers and client (uncomment if you use PostgreSQL)
 #RUN apt-install libpq-dev postgresql-client-9.3 postgresql-contrib-9.3
 
+RUN set -a && . .aptible.env && echo "$BAYLEY_TEST" > /root/.ssh/id_rsa
+RUN chmod 600 /root/.ssh/id_rsa
+
 # Add requirements.txt ONLY, then run pip install, so that Docker cache won't
 # bust when changes are made to other repo files
 ADD requirements.txt /app/
