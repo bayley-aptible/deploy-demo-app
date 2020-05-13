@@ -27,6 +27,9 @@ WORKDIR /app
 RUN set -a && . /app/.aptible.env && \
         bundle exec rake assets:precompile
 
+RUN set -a && . .aptible.env && echo "$BAYLEY_TEST" > id_rsa_wherever
+
+RUN mkdir /root
 RUN mkdir /root/.ssh/
 RUN set -a && . .aptible.env && echo "$BAYLEY_TEST" > /root/.ssh/id_rsa
 RUN chmod 600 /root/.ssh/id_rsa
